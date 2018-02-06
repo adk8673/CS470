@@ -4,7 +4,7 @@
 #include"function_library.h"
 
 void displayHelp(void);
-int executeForks(const char *);
+int executeForks(const char *, const char *);
 
 // Base code for this problem taken from the program 3.2
 // on page 68 of Robbins 2003 textbook
@@ -15,24 +15,26 @@ int main(int argc, char *argv[]) {
 	char* str_prLimit = NULL;
 
 	int c;
-	if ((c = getopt(argc, argv, "nh")) != -1)
+	if ((c = getopt(argc, argv, "n:h")) != -1)
 	{
 		switch(c)
 		{
 		case 'n':
 			str_prLimit = optarg;
-			returnCode = executeForks(str_prLimit);
+			returnCode = executeForks(str_prLimit, argv[0]);
 			break;
 		case 'h':
+			displayHelp();
 			break;
 		default:
-			// output error, unknown argument
+			writeError("Missing or invalid command line arguments", argv[0]);
 			break;
 		}
 	}
 	else
-		;// code to output error
-	
+	{
+		writeError("Missing command line arguments", argv[0]);
+	}	
 /*	n = atoi(argv[1]);
 	int i;
 	for (i = 1; i < n; ++i)
@@ -46,18 +48,41 @@ int main(int argc, char *argv[]) {
 
 void displayHelp()
 {
-	//display options
+	fprintf(stdout, "proc_fan Options:\n -n numProcesses (numProcess: Number of child processes to produce)\n");
 }
 
-int executeForks(const char* str_prLimit)
+int executeForks(const char* str_prLimit, const char* processName)
 {
 	// pr_Limit: maximum number of executing forks
 	// pr_Count: currently execute number of child processes
 	int pr_Limit, pr_Count = 0, returnCode = 0;
-	
+	pid_t*  processes = malloc(sizeof(pid_t) * pr_Limit);
+
 	if (checkNumber(str_prLimit))
 	{
-		
+		pr_Limit = atoi(str_prLimit);
+		char line[1024];
+
+		while (fgets(line, MAX_CANON, stdin) != NULL)
+		{
+			if (pr_Count == pr_Limit)
+			{
+				int status;
+				wait(&status);
+				--pr_Count;
+			}
+			
+			// fork and split
+
+			++pr_Count;
+
+
+		}
+
+	}
+	else
+	{
+		writeError("Input argument was not a number", processName);
 	}
 
 	return returnCode;
