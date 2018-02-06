@@ -1,19 +1,26 @@
 #include <ctype.h>
-#include "function_library.c"
+#include "function_library.h"
 
-bool checkNumber(const char* inputValue)
+int checkNumber(char* inputValue)
 {
-	bool isNum = true;
+	int isNum = 1;
 	char* c = inputValue;
 
 	if (!isdigit(*c))
-		isNum = false;
+		isNum = 0;
 
 	while (isNum && *(++c) == '\0')
 	{
-		if (!isDigit(*c))
-			isNum = false;
+		if (!isdigit(*c))
+			isNum = 0;
 	}
 
 	return isNum;
+}
+
+void writeError(const char* errorMessage, const char* processName)
+{
+	perror(processName);
+	perror(": Error: ");
+	perror(errorMessage);
 }

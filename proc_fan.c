@@ -1,22 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
+#include"function_library.h"
+
+void displayHelp(void);
+int executeForks(const char *);
 
 // Base code for this problem taken from the program 3.2
 // on page 68 of Robbins 2003 textbook
 int main(int argc, char *argv[]) {
+	int returnCode = 0;
 	pid_t childpid = 0;
 
-	char* str_prLimit = null;
+	char* str_prLimit = NULL;
 
 	int c;
-	if ((c = getopt(argc, argv, "nh") != -1)
+	if ((c = getopt(argc, argv, "nh")) != -1)
 	{
 		switch(c)
 		{
 		case 'n':
 			str_prLimit = optarg;
-			executeForks(str_prLimit);
+			returnCode = executeForks(str_prLimit);
 			break;
 		case 'h':
 			break;
@@ -34,8 +39,9 @@ int main(int argc, char *argv[]) {
 		if ((childpid = fork()) <= 0)
 			break;
 	fprintf(stderr, "i:%d process ID: %ld parent ID: %ld child id:%ld\n",
-*/			i, (long)getpid(), (long)getppid(), (long)childpid);
-	return 0;
+			i, (long)getpid(), (long)getppid(), (long)childpid);
+*/
+	return returnCode;
 }
 
 void displayHelp()
@@ -49,8 +55,10 @@ int executeForks(const char* str_prLimit)
 	// pr_Count: currently execute number of child processes
 	int pr_Limit, pr_Count = 0, returnCode = 0;
 	
-	if ()
-		;
+	if (checkNumber(str_prLimit))
+	{
+		
+	}
 
 	return returnCode;
 }
