@@ -1,7 +1,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
+#include<sys/wait.h>
+#include<sys/types.h>
+#include<errno.h>
 #include"function_library.h"
+
+#ifndef MAX_CANON
+#define MAX_CANON 8195
+#endif
 
 void displayHelp(void);
 int executeForks(const char *, const char *);
@@ -56,13 +63,12 @@ int executeForks(const char* str_prLimit, const char* processName)
 	// pr_Limit: maximum number of executing forks
 	// pr_Count: currently execute number of child processes
 	int pr_Limit, pr_Count = 0, returnCode = 0;
-	pid_t*  processes = malloc(sizeof(pid_t) * pr_Limit);
 
 	if (checkNumber(str_prLimit))
 	{
 		pr_Limit = atoi(str_prLimit);
 		char line[1024];
-
+		pid_t* childProcesses = malloc(sizeof(pid_t) * pr_Limit);
 		while (fgets(line, MAX_CANON, stdin) != NULL)
 		{
 			if (pr_Count == pr_Limit)
@@ -72,11 +78,24 @@ int executeForks(const char* str_prLimit, const char* processName)
 				--pr_Count;
 			}
 			
-			// fork and split
+			createChildProcess(line, processName);
 
 			++pr_Count;
-
-
+			
+			pid_t childpid;
+			int finishedCount = 0;
+			while (childpid = waitpid(-1, NULL, WNOHANG))
+			{
+				if (childpid != -1 && errno != EINTR)
+				{
+					--pr_Count;
+				}
+				else
+				{
+					break;
+				}
+			}
+					
 		}
 
 	}
