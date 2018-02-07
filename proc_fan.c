@@ -1,5 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+// Alex Kane
+// 2/7/2018
+// CS 4760 Project 1
 #include<unistd.h>
 #include<sys/wait.h>
 #include<sys/types.h>
@@ -46,17 +49,21 @@ int main(int argc, char *argv[]) {
 	return returnCode;
 }
 
+// output what program does
 void displayHelp()
 {
 	fprintf(stdout, "proc_fan Options:\n -n numProcesses (numProcess: Number of child processes to produce)\n");
 }
 
+// using the limit passed and the name of the progress, execute a forks based on the input from stdin
+// which will be tested by 
 int executeForks(const char* str_prLimit, const char* processName)
 {
 	// pr_Limit: maximum number of executing forks
 	// pr_Count: currently execute number of child processes
 	int pr_Limit, pr_Count = 0, returnCode = 0, status;
 
+	// verify a number was passed as an option, otherwise write error
 	if (checkNumber(str_prLimit))
 	{
 		pr_Limit = atoi(str_prLimit);
@@ -69,9 +76,12 @@ int executeForks(const char* str_prLimit, const char* processName)
 				--pr_Count;
 			}
 			
+			// create child process using input from file
 			createChildProcess(line, processName);
 			++pr_Count;
 			
+			// check to see if any children have finished and, if so
+			// decrement our count
 			pid_t childpid;
 			while (childpid = waitpid(-1, NULL, WNOHANG))
 			{
@@ -84,8 +94,11 @@ int executeForks(const char* str_prLimit, const char* processName)
 					break;
 				}
 			}
-		}	
-		wait(&status); 
+		}
+		
+		// wait for all children to finish
+		pid_t childpid;
+		while ((childpid = wait(&status)) > 0);	
 	}
 	else
 	{

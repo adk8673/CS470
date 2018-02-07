@@ -1,3 +1,7 @@
+// Alex Kane
+// 2/7/2018
+// CS 4760 Project 1
+// function_library.c
 #include <ctype.h>
 #include <string.h>
 #include <stdio.h>
@@ -7,13 +11,15 @@
 #include <errno.h>
 #include "function_library.h"
 
-
+// Check c-string to detemine if it contains
+// only numbers
 int checkNumber(const char* inputValue)
 {
 	int isNum = 1;
 	const char* c = inputValue;
 	
-	while (isNum && *c == '\0')
+	// use is digit to determine if each character is a digit
+	while (isNum && *c != '\0')
 	{
 		if (!isdigit(*c))
 			isNum = 0;
@@ -23,6 +29,7 @@ int checkNumber(const char* inputValue)
 	return isNum;
 }
 
+// Using perror, write information about errors to stderr
 void writeError(const char* errorMessage, const char* processName)
 {
 	char message[1024];
@@ -32,10 +39,14 @@ void writeError(const char* errorMessage, const char* processName)
 	perror(message);
 }
 
+// Create a child process by forking a child and executing the target process
+// using command line arguements passed
 void createChildProcess(const char* targetProgram, const char* processName)
 {
 	pid_t forkedPid = fork();
 
+	// see if fork is child or parent
+	// also check for errors in forking
 	if (forkedPid == 0)
 	{
 		// If we get here, we are inside of child process, begin parsing and our target program
