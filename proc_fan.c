@@ -71,7 +71,7 @@ int executeForks(const char* str_prLimit, const char* processName)
 		pid_t* childProcesses = malloc(sizeof(pid_t) * pr_Limit);
 		while (fgets(line, MAX_CANON, stdin) != NULL)
 		{
-			if (pr_Count == pr_Limit)
+		/*	if (pr_Count == pr_Limit)
 			{
 				int status;
 				wait(&status);
@@ -95,7 +95,7 @@ int executeForks(const char* str_prLimit, const char* processName)
 					break;
 				}
 			}
-					
+		*/			
 		}
 
 	}
