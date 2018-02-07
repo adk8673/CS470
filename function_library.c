@@ -8,10 +8,10 @@
 #include "function_library.h"
 
 
-int checkNumber(char* inputValue)
+int checkNumber(const char* inputValue)
 {
 	int isNum = 1;
-	char* c = inputValue;
+	const char* c = inputValue;
 	
 	while (isNum && *c == '\0')
 	{
