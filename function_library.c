@@ -41,8 +41,14 @@ void createChildProcess(const char* targetProgram, const char* processName)
 		// If we get here, we are inside of child process, begin parsing and our target program
 		// and args into a command line
 		char** args;
+		int execResults;
 		int numItems  = makeargv(targetProgram, " ", &args);
-		execvp(args[0], args);
+		execResults = execvp(args[0], args);
+		if (execResults == -1)
+		{
+			printf("%d\n", errno);
+			writeError("Failed to exec targetProcess", processName);
+		}
 	}
 	else if (forkedPid < 0)
 	{

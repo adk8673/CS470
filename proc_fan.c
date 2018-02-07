@@ -42,14 +42,7 @@ int main(int argc, char *argv[]) {
 	{
 		writeError("Missing command line arguments", argv[0]);
 	}	
-/*	n = atoi(argv[1]);
-	int i;
-	for (i = 1; i < n; ++i)
-		if ((childpid = fork()) <= 0)
-			break;
-	fprintf(stderr, "i:%d process ID: %ld parent ID: %ld child id:%ld\n",
-			i, (long)getpid(), (long)getppid(), (long)childpid);
-*/
+	
 	return returnCode;
 }
 
@@ -62,28 +55,24 @@ int executeForks(const char* str_prLimit, const char* processName)
 {
 	// pr_Limit: maximum number of executing forks
 	// pr_Count: currently execute number of child processes
-	int pr_Limit, pr_Count = 0, returnCode = 0;
+	int pr_Limit, pr_Count = 0, returnCode = 0, status;
 
 	if (checkNumber(str_prLimit))
 	{
 		pr_Limit = atoi(str_prLimit);
 		char line[1024];
-		pid_t* childProcesses = malloc(sizeof(pid_t) * pr_Limit);
 		while (fgets(line, MAX_CANON, stdin) != NULL)
 		{
-		/*	if (pr_Count == pr_Limit)
+			if (pr_Count == pr_Limit)
 			{
-				int status;
 				wait(&status);
 				--pr_Count;
 			}
 			
 			createChildProcess(line, processName);
-
 			++pr_Count;
 			
 			pid_t childpid;
-			int finishedCount = 0;
 			while (childpid = waitpid(-1, NULL, WNOHANG))
 			{
 				if (childpid != -1 && errno != EINTR)
@@ -95,9 +84,8 @@ int executeForks(const char* str_prLimit, const char* processName)
 					break;
 				}
 			}
-		*/			
-		}
-
+		}	
+		wait(&status); 
 	}
 	else
 	{
