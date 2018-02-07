@@ -1,0 +1,93 @@
+CS4760 Project 1
+
+In this project, a process, proc_fan, is kicked off using the command line (with standard input usually streamed into the process from a file, testing.data)
+The input from stdin is the target process, with its command line arguments.  In this project, it is usually the other program created, testsim, which will
+is called from the command line with its arguments.  It iterates a number of times based on a command line arguement, each time sleeping by the other command 
+line value.
+
+The project is hosted on github at github.com/adk8673/CS470
+The git commit logs are attached below:
+
+commit aff6709a092b0983199a35671ff5a3f8d9663e4b
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Wed Feb 7 15:29:41 2018 -0600
+
+    2/7/2018 Removed unused file
+
+commit fa4f5b2151e021e13eff65e2e07702a3767ceb19
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Wed Feb 7 15:03:57 2018 -0600
+
+    2/7/2018 Cleaning up files
+
+commit 9919e6926e0c43ff5ea5288a0977111cdcbf83dd
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Wed Feb 7 13:14:49 2018 -0600
+
+    2/7/2018 Fixed issues, got forking loop working
+
+commit 43bc220ee3eefb4ea1a669b1f1143594d9c32a96
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Wed Feb 7 12:10:52 2018 -0600
+
+    2/7/2018 Fixed makefile and added clean option
+
+commit 78e713e980033511dc8539b12851a4054ccf2e49
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Wed Feb 7 11:58:41 2018 -0600
+
+    2/7/2018 removed unused objects and files
+
+commit 9935d7623c8ba9a3195ecffb4bccba484829bbdb
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Wed Feb 7 11:55:43 2018 -0600
+
+    2/7 Current work
+
+commit 02af3372db518f0e78376f6bee3789a949cc2090
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Tue Feb 6 00:39:50 2018 -0600
+
+    Current work 2/6/2018
+
+commit bee1cad11945040ceeebd6ed9978e9752fa633a5
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Mon Feb 5 23:09:07 2018 -0600
+
+    Commit 2/5/2018
+
+commit db04a63e7f69f66c9eb0ae4faf782f919b7ba868
+Author: Alexander Kane <o2-kane@hoare7.cs.umsl.edu>
+Date:   Mon Feb 5 19:55:31 2018 -0600
+
+    Current work 2/5/2017
+
+commit 03d0495d2d34e170573b76123186ec6ec7dc17da
+Author: Alex <adk8673@gmail.com>
+Date:   Sat Feb 3 20:53:16 2018 -0600
+
+    Added new files for library functions
+
+commit 917090476cbbd3bc7c3608cd32191a4437bd9eda
+Author: Alex <adk8673@gmail.com>
+Date:   Sat Feb 3 16:42:17 2018 -0600
+
+    Checking in initial code from program 3.2, will be adjusted into the final proc_fan program
+
+commit 26afe833925a187a013ff22d2b5a96d6aeaf5e4f
+Author: Alex <adk8673@gmail.com>
+Date:   Sat Feb 3 15:15:47 2018 -0600
+
+    Check in of initial project 1 .c file
+
+commit 0953fc5f13fceabaffe48c0c629a85ced65deb3c
+Author: Alex <adk8673@gmail.com>
+Date:   Sat Feb 3 15:09:12 2018 -0600
+
+    test checkin
+
+commit 05bcd6ec02ddc1818412feef42f0317f70f76154
+Author: adk8673 <adk8673@gmail.com>
+Date:   Sat Feb 3 13:41:52 2018 -0600
+
+    Initial commit
